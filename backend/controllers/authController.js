@@ -1,7 +1,8 @@
 const { default: mongoose } = require('mongoose');
 const User = require('../models/userModel');
 const bcryptjs = require('bcryptjs');
-const signup = async (req, res) => {
+const { errorHandler } = require('../utils/error');
+const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
 
   if (
@@ -12,7 +13,7 @@ const signup = async (req, res) => {
     email === '' ||
     password === ''
   ) {
-    return res.status(400).json({ message: 'All fields are required' });
+    next(errorHandler(400, 'All fields are required'));
   }
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
@@ -22,7 +23,7 @@ const signup = async (req, res) => {
     await newUser.save();
     res.json('Signup successful');
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 exports.signup = signup;
