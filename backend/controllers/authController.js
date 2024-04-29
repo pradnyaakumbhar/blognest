@@ -37,6 +37,9 @@ const signin = async (req, res, next) => {
 
   try {
     const validUser = await User.findOne({ email });
+    let temp = JSON.stringify(validUser);
+    let returnedUser = JSON.parse(temp);
+    returnedUser.password = undefined;
     if (!validUser) {
       return next(errorHandler(404, 'User not found'));
     }
@@ -45,11 +48,10 @@ const signin = async (req, res, next) => {
       return next(errorHandler(400, 'Invalid Password'));
     }
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
-    const { pssword: pass, ...rest } = validUser._doc;
     res
       .status(200)
       .cookie('access_token', token, { httpOnly: true })
-      .json(rest);
+      .json(returnedUser);
   } catch (error) {
     next(error);
   }
