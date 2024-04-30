@@ -15,7 +15,12 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       require: true,
-      select: false,
+      // select: false,
+    },
+    profilePic: {
+      type: String,
+      default:
+        'https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg',
     },
   },
   { timestamps: true }
