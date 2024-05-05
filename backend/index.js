@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const userRoutes = require('./routes/userRoute');
 const authRoutes = require('./routes/authRoute');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 dotenv.config();
 mongoose
   .connect(process.env.MONGO)
@@ -16,7 +18,8 @@ mongoose
 const app = express();
 app.use(cors());
 app.use(express.json());
-
+app.use(cookieParser());
+app.use(bodyParser.json());
 app.listen(5000, () => {
   console.log('server running on port 5000!');
 });

@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema(
       default:
         'https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg',
     },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
