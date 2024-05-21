@@ -106,6 +106,7 @@ export default function DashProfile() {
           method: 'PUT',
           withCredentials: true,
           crossorigin: true,
+          credentials: 'include',
           // mode: 'cors',
           headers: {
             'Content-Type': 'application/json',
@@ -138,6 +139,7 @@ export default function DashProfile() {
         `http://localhost:5000/api/user/delete/${currentUser._id}`,
         {
           method: 'DELETE',
+          credentials: 'include',
         }
       );
       const data = await res.json();

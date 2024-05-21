@@ -21,6 +21,7 @@ const OAuth = () => {
         method: 'POST',
         withCredentials: true,
         crossorigin: true,
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
