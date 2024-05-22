@@ -18,7 +18,7 @@ export default function DashSidebar() {
   }, [location.search]);
   const handleSignout = async () => {
     try {
-      const res = await fetch('/api/user/signout', {
+      const res = await fetch('http://localhost:5000/api/user/signout', {
         method: 'POST',
       });
       const data = await res.json();
@@ -31,6 +31,7 @@ export default function DashSidebar() {
       console.log(error.message);
     }
   };
+
   return (
     <Sidebar className="w-full md:w-56">
       <Sidebar.Items>
