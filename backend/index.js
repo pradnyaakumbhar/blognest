@@ -5,6 +5,7 @@ const cors = require('cors');
 const userRoutes = require('./routes/userRoute');
 const authRoutes = require('./routes/authRoute');
 const postRoutes = require('./routes/postRoute');
+const commentRoutes = require('./routes/commentRoute');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 dotenv.config();
@@ -33,6 +34,7 @@ app.listen(5000, () => {
 app.use('/api/user', userRoutes.router);
 app.use('/api/auth', authRoutes.router);
 app.use('/api/post', postRoutes.router);
+app.use('/api/comment', commentRoutes.router);
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Internal Server Error';

@@ -108,7 +108,6 @@ export default function DashProfile() {
           withCredentials: true,
           crossorigin: true,
           credentials: 'include',
-          // mode: 'cors',
           headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
